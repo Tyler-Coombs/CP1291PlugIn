@@ -25,6 +25,7 @@ img {
     position: center;
     margin: auto;
 }
-#slides img {
+
+.hide {
     display: none;
 }

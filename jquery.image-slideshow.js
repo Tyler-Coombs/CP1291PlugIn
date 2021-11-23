@@ -1,6 +1,10 @@
 (function($) {
     $.fn.imageSlideShow = function() {
 
+        let settings = $.extend( {
+            timeout: 3000
+        })
+
         let imageCache = [];
         $("#gordieGallery img").each( (index, img) => {
             const image = new Image();
@@ -19,7 +23,37 @@
                     $("#caption").text(nextImage.title).fadeIn(1000);
                 });
             $("#caption").fadeOut(1000);
-        }, 3000);
-        $("#gordieGallery").hidden;
+        }, settings.timeout);
+        $("#gordieGallery").css("display", "none");
+
+        return this.each(function () {
+            let $startButton;
+            setStartButtonProperties();
+
+            function setStartButtonProperties() {
+                let prop = {
+                    "color": "white",
+                    "cursor": "pointer",
+                    "font-size": "20px",
+                    "width": "60px",
+                    "height": "30px",
+                    "position": "absolute",
+                    "top": "5px",
+                    "right": "5px",
+                    "border": "0px",
+                    "z-index": "1"
+                };
+
+                if (settings.startButton.src) {
+                    $startButton = $('<img>');
+                    $startButton.attr("src", settings.startButton.src);
+                } else {
+                    $startButton = $('<span>START</span>');
+                }
+                $startButton.css(prop);
+                $("#slide").append($startButton);
+            }
+
+        })
     }
 }(jQuery));
