@@ -3,6 +3,7 @@
         //hide image gallery
         $("#gordieGallery").css("display", "none");
 
+        //pre-load images
         let imageCache = [];
         $("#gordieGallery img").each( (index, img) => {
             const image = new Image();
@@ -11,6 +12,7 @@
             imageCache[index] = image;
         });
 
+        //settings so that user can customize without changing the plugin code
         let settings = $.extend( {
             title: "Gordie the Golden Retriever",
             timeout: 3000,
@@ -36,6 +38,7 @@
             }
         }, options)
 
+        //initialize variables and add the elements of the slideshow to the DOM
         let $startButton;
         let $stopButton;
         let $image;
@@ -46,17 +49,22 @@
         let $caption = "<h2 id='caption'>" + $("img").attr("alt") + "</h2>";
         $("body").append($caption);
 
+        //call functions to create the start and stop button and set properties
         setStartButtonProperties();
         setStopButtonProperties();
         setImageProperties();
 
+        //function to start the slideshow on button click
         $("#start").click(function () {
             let intervalID = startSlideshow();
+            $("#start").animate({top: '-=10px'}, 1000)
+            //stop slideshow on button click
             $("#stop").click(function () {
                 clearInterval(intervalID);
             });
         });
 
+        //functions to create hover effects on buttons
         $("#start").hover(function() {
             $(this).css("background-color", settings.startButton.color);
             $(this).css("color", "#ffffff");
@@ -72,6 +80,7 @@
             $(this).css("color", settings.stopButton.color);
         });
 
+        //function to create slideshow with fade in and fade out effects
         function startSlideshow() {
             let imageCounter = 0;
             return window.setInterval( () => {
@@ -86,6 +95,7 @@
             }, settings.timeout);
         }
 
+        //some properties refer to settings for customization
         function setStartButtonProperties() {
             let prop = {
                 "display": "block",
@@ -103,12 +113,14 @@
                 "z-index": "1"
             };
 
+            //add start button to DOM
             $startButton = $('<button id="start" type="button">START</button>');
             $startButton.css(prop);
             $("#caption").after($startButton);
 
         }
 
+        //some properties refers to settings for customization
         function setStopButtonProperties() {
             let prop = {
                 "display": "block",
@@ -126,11 +138,13 @@
                 "z-index": "1"
             };
 
+            //add stop button to DOM
             $stopButton = $('<button id="stop" type="button">STOP</button>');
             $stopButton.css(prop);
             $("#start").after($stopButton);
         }
 
+        //properties refer to settings for image customization
         function setImageProperties() {
             $image = $("#slide");
             $image.css( {
