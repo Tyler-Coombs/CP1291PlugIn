@@ -2,14 +2,7 @@ body {
     font-family: sans-serif;
     background: rgba(95, 179, 126, 0.81);
 }
-h1 {
-    color: rgb(35, 139, 171);
-    text-align: center;
-}
-h2 {
-    color: #ffffff;
-    text-align: center;
-}
+
 ul {
     list-style: none;
     margin: 0 auto;
@@ -17,13 +10,6 @@ ul {
     text-align: center;
     padding: 0;
     display: block;
-}
-img {
-    height: 800px;
-    width: 700px;
-    border: 10px rgb(35, 139, 171);
-    position: center;
-    margin: auto;
 }
 
 .hide {

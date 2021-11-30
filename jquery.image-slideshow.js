@@ -14,7 +14,7 @@
 
         //settings so that user can customize without changing the plugin code
         let settings = $.extend( {
-            title: "Gordie the Golden Retriever",
+            titleText: "Gordie Gallery",
             timeout: 3000,
             fadeOutTime: 1000,
             fadeInTime: 1000,
@@ -23,18 +23,26 @@
             imageBorder: "25px solid #F0D46D",
             imageBorderRadius: "15px",
             stopButton: {
-                color: "rgb(35, 139, 171)",
+                color: "rgb(250, 96, 96)",
                 background: "#dcdcdc",
-                height: "40px",
+                height: "60px",
                 width: "100px",
-                border: "5px solid rgb(35, 139, 171)"
+                border: "10px solid rgb(250, 96, 96)"
             },
             startButton: {
                 color: "rgb(35, 139, 171)",
                 background: "#dcdcdc",
-                height: "40px",
+                height: "60px",
                 width: "100px",
-                border: "5px solid rgb(35, 139, 171)"
+                border: "10px solid rgb(35, 139, 171)"
+            },
+            caption: {
+                color: "#ffffff",
+                fontSize: "30px"
+            },
+            title: {
+                color: "rgb(35, 139, 171)",
+                fontSize: "40px"
             }
         }, options)
 
@@ -42,22 +50,25 @@
         let $startButton;
         let $stopButton;
         let $image;
-        let $title = "<h1>" + settings.title + "</h1>";
+        let $title = "<h1>" + settings.titleText + "</h1>";
         $("body").append($title);
         let $slideShow = $('<img id="slide" src="images/treatsplease.jpg" alt="Treats Please">');
         $("body").append($slideShow);
         let $caption = "<h2 id='caption'>" + $("img").attr("alt") + "</h2>";
         $("body").append($caption);
 
-        //call functions to create the start and stop button and set properties
+        //call functions set slideshow properties and create start/stop buttons
+        setTitleAndCaptionProperties();
         setStartButtonProperties();
         setStopButtonProperties();
         setImageProperties();
 
+
         //function to start the slideshow on button click
-        $("#start").click(function () {
+        $("#start").click(function (evt) {
+            evt.preventDefault();
             let intervalID = startSlideshow();
-            $("#start").animate({top: '-=10px'}, 1000)
+            $("#start").animate({top: '-=10px'});
             //stop slideshow on button click
             $("#stop").click(function () {
                 clearInterval(intervalID);
@@ -81,6 +92,7 @@
         });
 
         //function to create slideshow with fade in and fade out effects
+        //time on slide(interval), fadeIn and fadeOut intervals refer to settings for customization
         function startSlideshow() {
             let imageCounter = 0;
             return window.setInterval( () => {
@@ -95,6 +107,7 @@
             }, settings.timeout);
         }
 
+        //function to set style/properties of START button
         //some properties refer to settings for customization
         function setStartButtonProperties() {
             let prop = {
@@ -120,6 +133,7 @@
 
         }
 
+        //function to set style/properties of the STOP button
         //some properties refers to settings for customization
         function setStopButtonProperties() {
             let prop = {
@@ -144,6 +158,7 @@
             $("#start").after($stopButton);
         }
 
+        //function to set style/properties for the images
         //properties refer to settings for image customization
         function setImageProperties() {
             $image = $("#slide");
@@ -156,6 +171,23 @@
                 "margin-left": "auto",
                 "margin-right": "auto",
                 "object-fit": "cover"
+            })
+        }
+
+        //function to set style/properties for the title of the slideshow and image captions
+        //color and font size refer to settings and are customizable
+        function setTitleAndCaptionProperties() {
+            let $slideshowTitle = $("h1")
+            let $slideshowCaptions = $("h2")
+            $slideshowTitle.css({
+                "color": settings.title.color,
+                "font-size": settings.title.fontSize,
+                "text-align": "center"
+            })
+            $slideshowCaptions.css({
+                "color": settings.caption.color,
+                "font-size": settings.caption.fontSize,
+                "text-align": "center"
             })
         }
     }
