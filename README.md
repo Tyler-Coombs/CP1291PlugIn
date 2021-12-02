@@ -28,21 +28,63 @@ Placing it in the project folder with your HTML file makes it easier to referenc
 <h3>Step 2:</h3> 
 Together with JQuery, include jquery.image-slideshow.js in your HTML page.
 JQuery 3.4.1 is recommended as it was used for development and testing.
-Ensure JQuery 3.4.1 is referenced before the plugin.
+Ensure JQuery 3.4.1 is referenced before the plugin. You may copy/paste the script elements below.
 
-<img width="716" alt="Screen Shot 2021-12-02 at 1 23 44 PM" src="https://user-images.githubusercontent.com/84094311/144468519-1b4ef2a9-32fb-4b3d-b0f1-6ca73f6f2852.png">
+<pre>
+<code>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
+  <script src="jquery.image-slideshow.js" type="text/javascript"></script>
+</code>
+</pre>
 
 <h3>Step 3:</h3> 
 Call the function in your JS application file as shown below.
-<img width="302" alt="Screen Shot 2021-12-02 at 1 24 13 PM" src="https://user-images.githubusercontent.com/84094311/144468569-570a095d-11e3-4a2d-9c10-2dee82cfdd48.png">
-Here, the function is being called on the div element with the id="gordieGallery". 
-Swap out #gordieGallery with your own div id that contains your images.
+<pre>
+<code>
+$("#your_div_id_here").imageSlideShow();
+</code>
+</pre>
+Here, the function is being called on the div element that contains your images. Insert your div id here.
 
 <h3>Step 4: OPTIONAL</h3> 
 Set properties to customize your slideshow within the function call. Example shown below.
-<img width="374" alt="Screen Shot 2021-12-02 at 1 41 04 PM" src="https://user-images.githubusercontent.com/84094311/144470045-73e7b37b-07f3-4c75-b962-c575cc025b35.png">
-Again, insert your own div id in place of #gordieGallery and set your own values after each property to customize the slideshow.
-
+<pre>
+<code>
+$("#your_div_id_here").imageSlideShow({
+    titleText: "Your Title Here",
+    timeout: 3000,
+    fadeOutTime: 1000,
+    fadeInTime: 1000,
+    imageWidth: "700px",
+    imageHeight: "800px",
+    imageBorder: "25px solid #F0D46D",
+    imageBorderRadius: "15px",
+    stopButton: {
+        color: "rgb(250, 96, 96)",
+        background: "#dcdcdc",
+        height: "60px",
+        width: "100px",
+        border: "10px solid rgb(250, 96, 96)"
+    },
+    startButton: {
+        color: "rgb(35, 139, 171)",
+        background: "#dcdcdc",
+        height: "60px",
+        width: "100px",
+        border: "10px solid rgb(35, 139, 171)"
+    },
+    caption: {
+        color: "#ffffff",
+        fontSize: "30px"
+    },
+    title: {
+        color: "rgb(35, 139, 171)",
+        fontSize: "40px"
+    }
+});
+</code>
+</pre>
+Again, insert your own div id and set your own values after each property to customize the slideshow.
 
 <h2>SAMPLE FILES FOR TESTING</h2>
 This project contains an index.html, style.css, and app.js files to test and show the use of my 
