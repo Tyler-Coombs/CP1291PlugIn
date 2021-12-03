@@ -1,6 +1,6 @@
 //uncomment inner code to view functioning customization
 $("#gordieGallery").imageSlideShow(/*{
-    title: "Gordie the Golden Retriever",
+    titleText: "Gordie the Golden Retriever",
     timeout: 3500,
     fadeOutTime: 500,
     fadeInTime: 500,

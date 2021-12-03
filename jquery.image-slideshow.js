@@ -1,11 +1,11 @@
 (function($) {
     $.fn.imageSlideShow = function(options) {
         //hide image gallery
-        $("#gordieGallery").css("display", "none");
+        $("div").css("display", "none");
 
         //pre-load images
         let imageCache = [];
-        $("#gordieGallery img").each( (index, img) => {
+        $("div img").each( (index, img) => {
             const image = new Image();
             image.src = $(img).attr("src");
             image.title = $(img).attr("alt");
